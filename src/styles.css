@@ -63,8 +63,19 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  /* Lenkrio dark hero theme */
+  --background: oklch(0.18 0.03 240);
+  --foreground: oklch(0.98 0.005 240);
+  --brand-cyan: oklch(0.88 0.15 195);
+  --brand-cyan-strong: oklch(0.82 0.18 195);
+  --brand-magenta: oklch(0.62 0.25 330);
+  --hero-bg-top: #0b1220;
+  --hero-bg-mid: #0a1a2e;
+  --hero-bg-bottom: #6ee7e7;
+  --chip-bg: #0e1a2b;
+  --chip-border: #1c2b44;
+  --gradient-hero: radial-gradient(ellipse 90% 70% at 50% 100%, #7ef0ea 0%, #1a4f6b 28%, #0a1a2e 55%, #08111f 100%);
+  --shadow-cyan-glow: 0 0 40px oklch(0.85 0.18 195 / 0.45);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
