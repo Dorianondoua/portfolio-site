@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92" fill="none" role="img" aria-label="Shadowsod">
+  <rect x="14" y="14" width="64" height="14" rx="3" fill="currentColor"></rect>
+  <rect x="14" y="39" width="64" height="14" rx="3" fill="currentColor" opacity="0.55"></rect>
+  <rect x="14" y="64" width="64" height="14" rx="3" fill="currentColor"></rect>
+  <rect x="14" y="14" width="14" height="39" rx="3" fill="currentColor"></rect>
+  <rect x="64" y="39" width="14" height="39" rx="3" fill="currentColor"></rect>
+</svg>
