@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Zap, Code2, Layers, Shield } from "lucide-react";
+import { SpotlightCard } from "@/components/portfolio/premium";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -94,7 +95,7 @@ export function About() {
           {/* Right — highlights grid with stagger + spring hover */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {highlights.map((h, i) => (
-              <motion.div
+              <SpotlightCard
                 key={h.title}
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +125,7 @@ export function About() {
                 <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
                   {h.desc}
                 </p>
-              </motion.div>
+              </SpotlightCard>
             ))}
           </div>
 

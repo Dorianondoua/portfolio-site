@@ -70,7 +70,7 @@ export function PortfolioFooter() {
           className="mt-8 flex flex-col items-center justify-between gap-2 border-t pt-6 text-center text-xs md:flex-row"
           style={{ borderColor: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.3)" }}
         >
-          <span>© 2025 Dorian Ondoua. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Dorian Ondoua. All rights reserved.</span>
           <span>Built with React · TypeScript · Tailwind · Framer Motion</span>
         </div>
       </div>

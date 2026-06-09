@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Projects } from "@/components/portfolio/Projects";
 import { PortfolioNavbar } from "@/components/portfolio/Navbar";
 import { PortfolioFooter } from "@/components/portfolio/Footer";
+import { GrainOverlay } from "@/components/portfolio/premium";
 
 export const Route = createFileRoute("/projects")({
   component: ProjectsPage,
@@ -27,6 +28,7 @@ function ProjectsPage() {
         <Projects />
       </div>
       <PortfolioFooter />
+      <GrainOverlay />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { SpotlightCard } from "@/components/portfolio/premium";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -53,7 +54,7 @@ function CategoryCard({ cat, ci }: { cat: Category; ci: number }) {
   const inView = useInView(cardRef, { once: true, margin: "-60px" });
 
   return (
-    <motion.div
+    <SpotlightCard
       ref={cardRef}
       initial={{ opacity: 0, y: 36 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -113,7 +114,7 @@ function CategoryCard({ cat, ci }: { cat: Category; ci: number }) {
           </div>
         ))}
       </div>
-    </motion.div>
+    </SpotlightCard>
   );
 }
 

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Globe, LayoutDashboard, PenTool, Server } from "lucide-react";
+import { SpotlightCard } from "@/components/portfolio/premium";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -77,7 +78,7 @@ export function Services() {
         {/* Grid */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
-            <motion.div
+            <SpotlightCard
               key={s.title}
               initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +137,7 @@ export function Services() {
                   </motion.li>
                 ))}
               </ul>
-            </motion.div>
+            </SpotlightCard>
           ))}
         </div>
 

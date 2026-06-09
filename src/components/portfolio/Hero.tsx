@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
+import { Magnetic } from "@/components/portfolio/premium";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -116,7 +117,7 @@ export function PortfolioHero() {
           >
             Dorian
             <br />
-            <span style={{ color: "#4efdfd" }}>Ondoua</span>
+            <span className="text-gradient">Ondoua</span>
           </motion.h1>
 
           {/* Role */}
@@ -149,26 +150,30 @@ export function PortfolioHero() {
             transition={{ duration: 0.65, delay: 0.44, ease: EASE }}
             className="mt-8 flex flex-wrap gap-3"
           >
-            <motion.a
-              href="#projects"
-              className="rounded-lg px-6 py-3 text-sm font-semibold text-[#080f1a]"
-              style={{ background: "#4efdfd" }}
-              whileHover={{ scale: 1.04, boxShadow: "0 0 28px rgba(78,253,253,0.4)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 300, damping: 22 }}
-            >
-              View my projects
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="rounded-lg border px-6 py-3 text-sm font-semibold text-white"
-              style={{ borderColor: "rgba(255,255,255,0.2)" }}
-              whileHover={{ borderColor: "#4efdfd", color: "#4efdfd", scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 300, damping: 22 }}
-            >
-              Contact me
-            </motion.a>
+            <Magnetic>
+              <motion.a
+                href="#projects"
+                className="rounded-lg px-6 py-3 text-sm font-semibold text-[#080f1a]"
+                style={{ background: "#4efdfd" }}
+                whileHover={{ scale: 1.04, boxShadow: "0 0 28px rgba(78,253,253,0.4)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 300, damping: 22 }}
+              >
+                View my projects
+              </motion.a>
+            </Magnetic>
+            <Magnetic>
+              <motion.a
+                href="#contact"
+                className="rounded-lg border px-6 py-3 text-sm font-semibold text-white"
+                style={{ borderColor: "rgba(255,255,255,0.2)" }}
+                whileHover={{ borderColor: "#4efdfd", color: "#4efdfd", scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 300, damping: 22 }}
+              >
+                Contact me
+              </motion.a>
+            </Magnetic>
           </motion.div>
 
           {/* Social links */}

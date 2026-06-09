@@ -14,6 +14,8 @@ html {
 
 @theme inline {
   --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -108,6 +110,8 @@ html {
   html {
     font-family: "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     font-size: 16px;
 }
 
@@ -118,28 +122,106 @@ html {
     line-height: 1.5;
   }
 
-  h1 {
-    font-size: 38px;
+  /* Display headings — Space Grotesk, fluid scale, tight tracking */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    letter-spacing: -0.045em;
   }
 
   h2 {
-    font-size: 36px;
-    font-weight: 600;
+    font-size: clamp(2rem, 4.2vw, 3.25rem);
     letter-spacing: -0.04em;
-    line-height: 1.1;
   }
 
   h3 {
-    font-weight: 600;
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.15;
   }
 
   p {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  /* Anchor offset so #section targets clear the fixed navbar */
+  section[id] {
+    scroll-margin-top: 90px;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(78, 253, 253, 0.25);
+    color: #ffffff;
+  }
+
+  /* Keyboard focus rings (premium, not the default browser outline) */
+  :focus-visible {
+    outline: 2px solid rgba(78, 253, 253, 0.6);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080f1a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #156e6e, #1c3a4a);
+    border-radius: 999px;
+    border: 2px solid #080f1a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4efdfd, #156e6e);
+  }
+  html {
+    scrollbar-color: #1c3a4a #080f1a;
+    scrollbar-width: thin;
+  }
+}
+
+@layer utilities {
+  /* Display font helper for arbitrary elements (e.g. big numerals, stats) */
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Cyan→teal gradient text */
+  .text-gradient {
+    background: linear-gradient(120deg, #ffffff 0%, #4efdfd 55%, #156e6e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Fine-grain film noise overlay (data-URI, no asset needed) */
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

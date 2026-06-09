@@ -8,6 +8,7 @@ import { Services } from "@/components/portfolio/Services";
 import { Contact } from "@/components/portfolio/Contact";
 import { PortfolioFooter } from "@/components/portfolio/Footer";
 import { PortfolioNavbar } from "@/components/portfolio/Navbar";
+import { GrainOverlay } from "@/components/portfolio/premium";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -37,6 +38,7 @@ function Index() {
       <Services />
       <Contact />
       <PortfolioFooter />
+      <GrainOverlay />
     </main>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Heart, BookOpen, Wallet } from "lucide-react";
+import { SpotlightCard } from "@/components/portfolio/premium";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -568,12 +569,14 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
 /* ─── Project card (portfolio view) ─── */
 function ProjectCard({ p, onViewCaseStudy }: { p: Project; onViewCaseStudy: () => void }) {
   return (
-    <motion.div
+    <SpotlightCard
       initial={{ opacity: 0, y: 48 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.75, ease: EASE }}
       viewport={{ once: true, margin: "-60px" }}
-      className="overflow-hidden rounded-2xl"
+      spotlightColor={`${p.accentColor}12`}
+      spotlightSize={460}
+      className="rounded-2xl"
       style={{ border: "1px solid rgba(255,255,255,0.08)", background: "#0d1b24" }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2">
@@ -697,7 +700,7 @@ function ProjectCard({ p, onViewCaseStudy }: { p: Project; onViewCaseStudy: () =
           </div>
         </div>
       </div>
-    </motion.div>
+    </SpotlightCard>
   );
 }
 
