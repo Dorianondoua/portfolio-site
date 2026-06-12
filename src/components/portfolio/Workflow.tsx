@@ -1,65 +1,25 @@
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const steps = [
-  {
-    number: "1",
-    title: "Discovery & Strategy",
-    desc: "Understanding your business goals, defining project scope, and aligning expectations to establish a clear roadmap.",
-  },
-  {
-    number: "2",
-    title: "Design & Prototyping",
-    desc: "Creating wireframes, user journeys, and high-fidelity UI mockups that ensure an intuitive, conversion-focused experience.",
-  },
-  {
-    number: "3",
-    title: "Development & Testing",
-    desc: "Building scalable solutions with modern technologies and performing thorough QA testing to guarantee stability.",
-  },
-  {
-    number: "4",
-    title: "Launch & Support",
-    desc: "Deploying the project, monitoring performance, and providing continuous updates and improvements post-launch.",
-  },
-];
-
-const toolGroups = [
-  {
-    label: "Frontend",
-    items: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
-  },
-  {
-    label: "Backend",
-    items: ["Spring Boot", "Java", "Node.js", "REST API", "JWT Auth"],
-  },
-  {
-    label: "Database & Tools",
-    items: ["PostgreSQL", "MySQL", "Firebase", "Docker", "Git / GitHub"],
-  },
-];
-
-const deliverables = [
-  {
-    title: "Web Development",
-    desc: "Performant, SEO-optimized websites built with modern development practices.",
-    features: ["SEO optimized", "High PageSpeed score", "Responsive design", "Secure & fast", "Scalable architecture"],
-  },
-  {
-    title: "UI/UX Design",
-    desc: "User-centered design that improves usability, engagement, and conversions.",
-    features: ["Wireframes", "Prototypes", "User journeys", "Design systems", "Usability improvements"],
-  },
-  {
-    title: "SaaS Development",
-    desc: "End-to-end SaaS product development, from concept to a fully functional platform.",
-    features: ["User authentication", "Admin dashboards", "API integrations", "Real-time features", "Cloud deployment"],
-  },
+// Tech-name lists stay fixed; only the group labels are translated (by index).
+const toolGroupItems = [
+  ["React", "Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
+  ["Spring Boot", "Java", "Node.js", "REST API", "JWT Auth"],
+  ["PostgreSQL", "MySQL", "Firebase", "Docker", "Git / GitHub"],
 ];
 
 export function Workflow() {
+  const { t } = useLang();
+  const steps = t.workflow.steps.map((s, i) => ({ ...s, number: String(i + 1) }));
+  const toolGroups = toolGroupItems.map((items, i) => ({
+    label: t.workflow.toolGroupLabels[i],
+    items,
+  }));
+  const deliverables = t.workflow.deliverables;
+
   return (
     <section id="workflow" className="w-full" style={{ background: "#080f1a" }}>
 
@@ -80,7 +40,7 @@ export function Workflow() {
             className="mb-3 text-sm font-semibold tracking-widest uppercase"
             style={{ color: "#4efdfd" }}
           >
-            Workflow
+            {t.workflow.eyebrow}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 22 }}
@@ -89,7 +49,7 @@ export function Workflow() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-white"
           >
-            My Development Process
+            {t.workflow.heading}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -99,7 +59,7 @@ export function Workflow() {
             className="mx-auto mt-4 max-w-xl text-sm leading-relaxed"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            A streamlined workflow combining strategy, design, engineering and long-term support.
+            {t.workflow.intro}
           </motion.p>
         </div>
 
@@ -116,7 +76,7 @@ export function Workflow() {
 
             {/* Left — Steps */}
             <div>
-              <h3 className="mb-8 text-lg font-bold text-white">Development Steps</h3>
+              <h3 className="mb-8 text-lg font-bold text-white">{t.workflow.stepsTitle}</h3>
               <div className="flex flex-col gap-8">
                 {steps.map((step, i) => (
                   <motion.div
@@ -164,7 +124,7 @@ export function Workflow() {
 
             {/* Right — Tools */}
             <div>
-              <h3 className="mb-8 text-lg font-bold text-white">Tools I Use</h3>
+              <h3 className="mb-8 text-lg font-bold text-white">{t.workflow.toolsTitle}</h3>
               <div className="flex flex-col gap-7">
                 {toolGroups.map((group, gi) => (
                   <motion.div
@@ -215,10 +175,10 @@ export function Workflow() {
           className="mb-5 text-center"
         >
           <p className="text-sm font-semibold tracking-widest uppercase" style={{ color: "#4efdfd" }}>
-            What I Deliver
+            {t.workflow.deliverEyebrow}
           </p>
           <p className="mx-auto mt-2 max-w-sm text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-            Results-driven solutions tailored to your specific needs.
+            {t.workflow.deliverIntro}
           </p>
         </motion.div>
 
@@ -292,7 +252,7 @@ export function Workflow() {
             transition={{ duration: 0.5, ease: EASE }}
             viewport={{ once: true }}
           >
-            Ready to start?
+            {t.workflow.ctaEyebrow}
           </motion.p>
 
           <motion.h3
@@ -303,7 +263,7 @@ export function Workflow() {
             transition={{ duration: 0.65, delay: 0.08, ease: EASE }}
             viewport={{ once: true }}
           >
-            Ready to transform your business?
+            {t.workflow.ctaHeading}
           </motion.h3>
 
           <motion.p
@@ -314,8 +274,7 @@ export function Workflow() {
             transition={{ duration: 0.6, delay: 0.16, ease: EASE }}
             viewport={{ once: true }}
           >
-            Claim your free 30-minute strategy call and discover how my proven approach
-            can help you outperform competitors and generate measurable growth.
+            {t.workflow.ctaText}
           </motion.p>
 
           <motion.div
@@ -338,7 +297,7 @@ export function Workflow() {
               whileTap={{ scale: 0.97 }}
             >
               <Calendar className="h-4 w-4" />
-              Book your free strategy call
+              {t.workflow.ctaButton}
             </motion.a>
           </motion.div>
 
@@ -350,7 +309,7 @@ export function Workflow() {
             transition={{ duration: 0.5, delay: 0.32 }}
             viewport={{ once: true }}
           >
-            Limited availability&nbsp;·&nbsp;No obligation&nbsp;·&nbsp;100% confidential
+            {t.workflow.ctaNote}
           </motion.p>
         </motion.div>
 

@@ -3,17 +3,9 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 import Logo from "@/components/branding/Logo";
+import { useLang, LanguageToggle } from "@/lib/i18n";
 
 interface NavLinkDef { label: string; href: string }
-
-const navLinks: NavLinkDef[] = [
-  { label: "About",    href: "#about" },
-  { label: "Stack",    href: "#stack" },
-  { label: "Workflow", href: "#workflow" },
-  { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#services" },
-  { label: "Contact",  href: "#contact" },
-];
 
 function NavLink({ link, className, onClick, isHome }: {
   link: NavLinkDef;
@@ -34,6 +26,16 @@ export function PortfolioNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+  const { t } = useLang();
+
+  const navLinks: NavLinkDef[] = [
+    { label: t.nav.links.about,    href: "#about" },
+    { label: t.nav.links.stack,    href: "#stack" },
+    { label: t.nav.links.workflow, href: "#workflow" },
+    { label: t.nav.links.projects, href: "#projects" },
+    { label: t.nav.links.services, href: "#services" },
+    { label: t.nav.links.contact,  href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -72,23 +74,28 @@ export function PortfolioNavbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <a
-          href="#contact"
-          className="hidden rounded-lg border px-5 py-2 text-sm font-semibold transition-all duration-200 hover:bg-[#4efdfd] hover:text-[#080f1a] md:inline-flex"
-          style={{ borderColor: "rgba(78,253,253,0.5)", color: "#4efdfd" }}
-        >
-          Hire Me
-        </a>
+        {/* Right side — language toggle + CTA (desktop) / burger (mobile) */}
+        <div className="flex items-center gap-3">
+          <LanguageToggle />
 
-        {/* Mobile burger */}
-        <button
-          className="md:hidden"
-          style={{ color: "#4efdfd" }}
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          {/* CTA */}
+          <a
+            href="#contact"
+            className="hidden rounded-lg border px-5 py-2 text-sm font-semibold transition-all duration-200 hover:bg-[#4efdfd] hover:text-[#080f1a] md:inline-flex"
+            style={{ borderColor: "rgba(78,253,253,0.5)", color: "#4efdfd" }}
+          >
+            {t.nav.cta}
+          </a>
+
+          {/* Mobile burger */}
+          <button
+            className="md:hidden"
+            style={{ color: "#4efdfd" }}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -112,8 +119,9 @@ export function PortfolioNavbar() {
             href="#contact"
             className="mt-2 rounded-lg border px-5 py-2 text-center text-sm font-semibold"
             style={{ borderColor: "rgba(78,253,253,0.5)", color: "#4efdfd" }}
+            onClick={() => setMenuOpen(false)}
           >
-            Hire Me
+            {t.nav.cta}
           </a>
         </motion.div>
       )}

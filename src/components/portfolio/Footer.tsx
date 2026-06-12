@@ -1,13 +1,6 @@
 import { Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import Logo from "@/components/branding/Logo";
-
-const links = [
-  { label: "About",    href: "#about" },
-  { label: "Stack",    href: "#stack" },
-  { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#services" },
-  { label: "Contact",  href: "#contact" },
-];
+import { useLang } from "@/lib/i18n";
 
 const socials = [
   { icon: <Github className="h-4 w-4" />,        href: "https://github.com/DorianOndoua" },
@@ -17,6 +10,15 @@ const socials = [
 ];
 
 export function PortfolioFooter() {
+  const { t } = useLang();
+  const links = [
+    { label: t.nav.links.about,    href: "#about" },
+    { label: t.nav.links.stack,    href: "#stack" },
+    { label: t.nav.links.projects, href: "#projects" },
+    { label: t.nav.links.services, href: "#services" },
+    { label: t.nav.links.contact,  href: "#contact" },
+  ];
+
   return (
     <footer style={{ background: "#080f1a" }}>
       {/* Dashed top border */}
@@ -70,8 +72,8 @@ export function PortfolioFooter() {
           className="mt-8 flex flex-col items-center justify-between gap-2 border-t pt-6 text-center text-xs md:flex-row"
           style={{ borderColor: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.3)" }}
         >
-          <span>© {new Date().getFullYear()} Dorian Ondoua. All rights reserved.</span>
-          <span>Built with React · TypeScript · Tailwind · Framer Motion</span>
+          <span>© {new Date().getFullYear()} Dorian Ondoua. {t.footer.rights}</span>
+          <span>{t.footer.builtWith}</span>
         </div>
       </div>
     </footer>

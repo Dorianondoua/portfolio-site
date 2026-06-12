@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useLenis } from "@/hooks/use-lenis";
+import { LanguageProvider } from "@/lib/i18n";
 
 import appCss from "../styles.css?url";
 
@@ -110,8 +111,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SmoothScrollProvider />
-      <Outlet />
+      <LanguageProvider>
+        <SmoothScrollProvider />
+        <Outlet />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

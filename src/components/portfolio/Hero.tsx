@@ -2,17 +2,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
 import { Magnetic } from "@/components/portfolio/premium";
+import { useLang } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const stats = [
-  { value: "5+",          label: "Projects delivered" },
-  { value: "React",       label: "/ Next.js" },
-  { value: "Spring Boot", label: "Backend" },
-  { value: "API",         label: "JWT-secured" },
-];
-
 export function PortfolioHero() {
+  const { t } = useLang();
+  const stats = t.hero.stats;
   const heroRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -104,7 +100,7 @@ export function PortfolioHero() {
             style={{ borderColor: "rgba(78,253,253,0.3)", color: "#4efdfd", background: "rgba(78,253,253,0.06)" }}
           >
             <span className="h-2 w-2 animate-pulse rounded-full bg-[#4efdfd]" />
-            Available for freelance missions
+            {t.hero.badge}
           </motion.div>
 
           {/* Name */}
@@ -128,7 +124,7 @@ export function PortfolioHero() {
             className="mt-3 text-base font-medium md:text-lg"
             style={{ color: "rgba(255,255,255,0.6)" }}
           >
-            Full-Stack Developer — React, Next.js &amp; Spring Boot
+            {t.hero.role}
           </motion.p>
 
           {/* Tagline */}
@@ -139,8 +135,7 @@ export function PortfolioHero() {
             className="mt-4 max-w-md text-sm leading-relaxed md:text-base"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            I build modern, fast, and premium web applications.
-            From React frontend to Spring Boot backend, with a UI that converts.
+            {t.hero.tagline}
           </motion.p>
 
           {/* CTAs */}
@@ -159,7 +154,7 @@ export function PortfolioHero() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
               >
-                View my projects
+                {t.hero.ctaProjects}
               </motion.a>
             </Magnetic>
             <Magnetic>
@@ -171,7 +166,7 @@ export function PortfolioHero() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
               >
-                Contact me
+                {t.hero.ctaContact}
               </motion.a>
             </Magnetic>
           </motion.div>
@@ -281,7 +276,7 @@ export function PortfolioHero() {
         className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-1"
         style={{ color: "rgba(255,255,255,0.25)" }}
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <span className="text-xs tracking-widest uppercase">{t.hero.scroll}</span>
         <ArrowDown className="h-4 w-4 animate-bounce" />
       </motion.div>
     </section>

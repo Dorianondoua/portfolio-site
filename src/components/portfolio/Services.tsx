@@ -1,37 +1,24 @@
 import { motion } from "framer-motion";
 import { Globe, LayoutDashboard, PenTool, Server } from "lucide-react";
 import { SpotlightCard } from "@/components/portfolio/premium";
+import { useLang } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const services = [
-  {
-    icon: <Globe className="h-6 w-6" />,
-    title: "Web Development",
-    desc: "Modern, performant, SEO-optimized websites and web apps. From premium landing pages to complex projects.",
-    features: ["React / Next.js", "Responsive & mobile-first", "Optimized performance", "Technical SEO"],
-  },
-  {
-    icon: <LayoutDashboard className="h-6 w-6" />,
-    title: "SaaS Development",
-    desc: "Full dashboards, multi-role authentication, subscriptions, team management. Turnkey business applications.",
-    features: ["Advanced dashboard", "JWT Auth / roles", "Secure REST API", "Multi-tenant ready"],
-  },
-  {
-    icon: <PenTool className="h-6 w-6" />,
-    title: "UI/UX Integration",
-    desc: "Figma mockup to pixel-perfect interfaces with Framer Motion animations. Awwwards-level quality.",
-    features: ["Pixel-perfect Figma", "Advanced animations", "Design system", "Framer Motion"],
-  },
-  {
-    icon: <Server className="h-6 w-6" />,
-    title: "Backend & APIs",
-    desc: "Robust REST APIs with Spring Boot, database management, JWT security, Swagger documentation.",
-    features: ["Spring Boot / Java", "PostgreSQL / MySQL", "JWT Authentication", "Documented API"],
-  },
+const serviceIcons = [
+  <Globe className="h-6 w-6" />,
+  <LayoutDashboard className="h-6 w-6" />,
+  <PenTool className="h-6 w-6" />,
+  <Server className="h-6 w-6" />,
 ];
 
 export function Services() {
+  const { t } = useLang();
+  const services = t.services.items.map((s, i) => ({
+    ...s,
+    icon: serviceIcons[i],
+  }));
+
   return (
     <section
       id="services"
@@ -52,7 +39,7 @@ export function Services() {
             className="mb-3 text-sm font-semibold tracking-widest uppercase"
             style={{ color: "#4efdfd" }}
           >
-            Services
+            {t.services.eyebrow}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 22 }}
@@ -61,7 +48,7 @@ export function Services() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-white"
           >
-            What I can build for you
+            {t.services.heading}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -71,7 +58,7 @@ export function Services() {
             className="mx-auto mt-4 max-w-lg text-sm"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Each service is designed to deliver maximum value, quickly and cleanly.
+            {t.services.intro}
           </motion.p>
         </div>
 
@@ -160,7 +147,7 @@ export function Services() {
             }}
             whileTap={{ scale: 0.97 }}
           >
-            Let's talk about your project
+            {t.services.cta}
           </motion.a>
         </motion.div>
       </div>

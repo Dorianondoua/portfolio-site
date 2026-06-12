@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Calendar, Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useLang } from "@/lib/i18n";
 
 const EMAILJS_SERVICE_ID  = "service_lzzra49";
 const EMAILJS_TEMPLATE_ID = "template_yya8mjh";
@@ -27,36 +28,37 @@ function LinkedinIcon() {
   );
 }
 
-const socials = [
-  {
-    icon: <Mail className="h-5 w-5" />,
-    label: "Email",
-    value: "ondouadorian188@gmail.com",
-    href: undefined as string | undefined,
-  },
-  {
-    icon: <MessageCircle className="h-5 w-5" />,
-    label: "WhatsApp",
-    value: "Discuss your project",
-    href: "https://wa.me/+237698973350",
-  },
-  {
-    icon: <LinkedinIcon />,
-    label: "LinkedIn",
-    value: "Dorian Ondoua",
-    href: "https://www.linkedin.com/in/dorian-ondoua-692b483a5",
-  },
-  {
-    icon: <GithubIcon />,
-    label: "GitHub",
-    value: "DorianOndoua",
-    href: "https://github.com/DorianOndoua",
-  },
-];
-
 export function Contact() {
+  const { t } = useLang();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
+
+  const socials = [
+    {
+      icon: <Mail className="h-5 w-5" />,
+      label: "Email",
+      value: "ondouadorian188@gmail.com",
+      href: undefined as string | undefined,
+    },
+    {
+      icon: <MessageCircle className="h-5 w-5" />,
+      label: "WhatsApp",
+      value: t.contact.whatsappValue,
+      href: "https://wa.me/+237698973350",
+    },
+    {
+      icon: <LinkedinIcon />,
+      label: "LinkedIn",
+      value: "Dorian Ondoua",
+      href: "https://www.linkedin.com/in/dorian-ondoua-692b483a5",
+    },
+    {
+      icon: <GithubIcon />,
+      label: "GitHub",
+      value: "DorianOndoua",
+      href: "https://github.com/DorianOndoua",
+    },
+  ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -100,7 +102,7 @@ export function Contact() {
             className="mb-3 text-sm font-semibold tracking-widest uppercase"
             style={{ color: "#4efdfd" }}
           >
-            Contact
+            {t.contact.eyebrow}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 22 }}
@@ -109,7 +111,7 @@ export function Contact() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-white"
           >
-            Let's work together
+            {t.contact.heading}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -119,7 +121,7 @@ export function Contact() {
             className="mx-auto mt-3 max-w-md text-sm"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Available for freelance missions, SaaS projects, or any interesting collaboration.
+            {t.contact.intro}
           </motion.p>
         </div>
 
@@ -157,9 +159,9 @@ export function Contact() {
                 <Calendar className="h-5 w-5" />
               </div>
               <div>
-                <div className="text-sm font-semibold text-white">Book a Call</div>
+                <div className="text-sm font-semibold text-white">{t.contact.bookTitle}</div>
                 <div className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  30 min — let's discuss your project
+                  {t.contact.bookDesc}
                 </div>
               </div>
             </motion.a>
@@ -171,10 +173,10 @@ export function Contact() {
             >
               <div className="mb-1 flex items-center gap-2">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-[#4efdfd]" />
-                <span className="text-sm font-semibold text-white">Available now</span>
+                <span className="text-sm font-semibold text-white">{t.contact.availableTitle}</span>
               </div>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-                Reply within 24h · Based in Cameroon · Remote work available
+                {t.contact.availableDesc}
               </p>
             </div>
 
@@ -245,19 +247,19 @@ export function Contact() {
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-white">Name</label>
+                <label className="mb-1.5 block text-sm font-medium text-white">{t.contact.form.nameLabel}</label>
                 <input
                   name="name" value={form.name} onChange={handleChange}
-                  placeholder="Your name" required disabled={status === "loading"}
+                  placeholder={t.contact.form.namePlaceholder} required disabled={status === "loading"}
                   className="w-full rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#4efdfd]/50 transition-colors disabled:opacity-50"
                   style={inputStyle}
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-white">Email</label>
+                <label className="mb-1.5 block text-sm font-medium text-white">{t.contact.form.emailLabel}</label>
                 <input
                   name="email" type="email" value={form.email} onChange={handleChange}
-                  placeholder="your@email.com" required disabled={status === "loading"}
+                  placeholder={t.contact.form.emailPlaceholder} required disabled={status === "loading"}
                   className="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors disabled:opacity-50"
                   style={inputStyle}
                 />
@@ -265,20 +267,20 @@ export function Contact() {
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-white">Subject</label>
+              <label className="mb-1.5 block text-sm font-medium text-white">{t.contact.form.subjectLabel}</label>
               <input
                 name="subject" value={form.subject} onChange={handleChange}
-                placeholder="Your project in a few words" required disabled={status === "loading"}
+                placeholder={t.contact.form.subjectPlaceholder} required disabled={status === "loading"}
                 className="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors disabled:opacity-50"
                 style={inputStyle}
               />
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-white">Message</label>
+              <label className="mb-1.5 block text-sm font-medium text-white">{t.contact.form.messageLabel}</label>
               <textarea
                 name="message" value={form.message} onChange={handleChange}
-                placeholder="Describe your project, your needs, your budget..."
+                placeholder={t.contact.form.messagePlaceholder}
                 rows={5} required disabled={status === "loading"}
                 className="w-full resize-none rounded-lg px-4 py-2.5 text-sm outline-none transition-colors disabled:opacity-50"
                 style={inputStyle}
@@ -289,7 +291,7 @@ export function Contact() {
               <div className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium"
                 style={{ background: "rgba(78,253,253,0.08)", border: "1px solid rgba(78,253,253,0.25)", color: "#4efdfd" }}>
                 <CheckCircle className="h-4 w-4 shrink-0" />
-                Message sent! I'll get back to you within 24h.
+                {t.contact.form.success}
               </div>
             )}
 
@@ -297,7 +299,7 @@ export function Contact() {
               <div className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium"
                 style={{ background: "rgba(255,80,80,0.08)", border: "1px solid rgba(255,80,80,0.25)", color: "#ff6b6b" }}>
                 <AlertCircle className="h-4 w-4 shrink-0" />
-                Something went wrong. Please try again or contact me directly.
+                {t.contact.form.error}
               </div>
             )}
 
@@ -311,9 +313,9 @@ export function Contact() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {status === "loading" ? (
-                <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>
+                <><Loader2 className="h-4 w-4 animate-spin" /> {t.contact.form.sending}</>
               ) : (
-                <><Send className="h-4 w-4" /> Send message</>
+                <><Send className="h-4 w-4" /> {t.contact.form.send}</>
               )}
             </motion.button>
           </motion.form>

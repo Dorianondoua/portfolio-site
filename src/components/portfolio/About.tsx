@@ -1,33 +1,24 @@
 import { motion } from "framer-motion";
 import { Zap, Code2, Layers, Shield } from "lucide-react";
 import { SpotlightCard } from "@/components/portfolio/premium";
+import { useLang, Rich } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const highlights = [
-  {
-    icon: <Zap className="h-5 w-5" />,
-    title: "Premium UI",
-    desc: "Interfaces that captivate and convert, inspired by the best Awwwards standards.",
-  },
-  {
-    icon: <Code2 className="h-5 w-5" />,
-    title: "Full-Stack",
-    desc: "From React components to the Spring Boot API, I manage the entire application stack.",
-  },
-  {
-    icon: <Layers className="h-5 w-5" />,
-    title: "SaaS & Dashboards",
-    desc: "Business dashboards, subscriptions, multi-tenant management — my domain of expertise.",
-  },
-  {
-    icon: <Shield className="h-5 w-5" />,
-    title: "Secure APIs",
-    desc: "JWT authentication, roles, permissions — security built in from the ground up.",
-  },
+const highlightIcons = [
+  <Zap className="h-5 w-5" />,
+  <Code2 className="h-5 w-5" />,
+  <Layers className="h-5 w-5" />,
+  <Shield className="h-5 w-5" />,
 ];
 
 export function About() {
+  const { t } = useLang();
+  const highlights = t.about.highlights.map((h, i) => ({
+    ...h,
+    icon: highlightIcons[i],
+  }));
+
   return (
     <section id="about" className="w-full" style={{ background: "#080f1a" }}>
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12">
@@ -43,7 +34,7 @@ export function About() {
               className="mb-4 text-sm font-semibold tracking-widest uppercase"
               style={{ color: "#4efdfd" }}
             >
-              About
+              {t.about.eyebrow}
             </motion.p>
 
             <motion.h2
@@ -53,7 +44,7 @@ export function About() {
               viewport={{ once: true, margin: "-80px" }}
               className="mb-6 text-white"
             >
-              Developer passionate about interfaces that make a difference.
+              {t.about.heading}
             </motion.h2>
 
             <motion.div
@@ -64,19 +55,9 @@ export function About() {
               className="flex flex-col gap-4 text-sm leading-relaxed"
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
-              <p>
-                I'm <strong className="text-white">Dorian Ondoua</strong>, a full-stack developer
-                specializing in building modern web applications with React, Next.js, and Spring Boot.
-              </p>
-              <p>
-                My strength? Combining <strong className="text-white">premium UI</strong> that captures
-                attention with a <strong className="text-white">robust backend architecture</strong>.
-                Every project I deliver is designed to perform, scale, and impress.
-              </p>
-              <p>
-                Passionate about SaaS, medical dashboards, and business applications,
-                I always aim for that balance between beautiful and functional.
-              </p>
+              <p><Rich text={t.about.p1} /></p>
+              <p><Rich text={t.about.p2} /></p>
+              <p><Rich text={t.about.p3} /></p>
             </motion.div>
 
             <motion.div
@@ -88,7 +69,7 @@ export function About() {
               style={{ borderColor: "rgba(78,253,253,0.25)", color: "#4efdfd", background: "rgba(78,253,253,0.05)" }}
             >
               <span className="h-2 w-2 animate-pulse rounded-full bg-[#4efdfd]" />
-              Available for new projects
+              {t.about.available}
             </motion.div>
           </div>
 

@@ -2,8 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Heart, BookOpen, Wallet } from "lucide-react";
 import { SpotlightCard } from "@/components/portfolio/premium";
+import { useLang } from "@/lib/i18n";
+import type { Dict } from "@/lib/translations";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+type ProjectsUI = Dict["projects"]["ui"];
 
 /* ─── Types ─── */
 interface ProcessStep { title: string; desc: string }
@@ -31,66 +35,21 @@ interface Project {
   icon: React.ReactNode;
 }
 
-/* ─── Data ─── */
-const projects: Project[] = [
+/* ─── Static data (non-translated: ids, colors, images, links, stack) ─── */
+type ProjectStatic = Pick<
+  Project,
+  "id" | "index" | "title" | "accentColor" | "coverImage" | "gradient" | "stack" | "github" | "demoUrl" | "live" | "icon"
+>;
+
+const projectStatic: ProjectStatic[] = [
   {
     id: "healthcare",
     index: "01",
-    label: "Healthcare",
     title: "HealthSOD",
-    tagline: "Reprenez le contrôle de votre santé.",
-    description:
-      "HealthSOD rassemble vos consultations, analyses et médecins dans une seule application. Plateforme full-stack (React + Spring Boot) déployée en production — 10K+ patients, 500+ médecins.",
     accentColor: "#4efdfd",
     coverImage: "/logo/healthsod.png",
     gradient: "linear-gradient(135deg, #0d4060 0%, #0d1b24 100%)",
-    metrics: ["Live in production", "10K+ patients", "500+ médecins"],
     icon: <Heart className="h-8 w-8" />,
-    overview:
-      "HealthSOD is a connected health platform that centralizes consultations, medical analyses, and doctor appointments into a single intuitive application. Built solo from architecture to deployment, it is now live in production with thousands of active users.",
-    challenge:
-      "Patients in Cameroon and across Africa struggle to manage their health data — appointments scattered, lab results lost, no direct connection with their doctors. HealthSOD was built to unify everything in one place, with real-time data, a clean UX, and bulletproof security.",
-    goals: [
-      "Build an intuitive health app for patients, doctors and admins",
-      "Centralize appointments, symptoms and medical history",
-      "Implement real-time health data tracking (BPM, steps, sleep)",
-      "Secure all medical data with JWT multi-role authentication",
-      "Achieve a 4.9★ app rating through premium UX design",
-      "Deploy to production and scale to 10 000+ active users",
-    ],
-    process: [
-      {
-        title: "Product Architecture",
-        desc: "Defined 3 user roles (patient, doctor, admin), data models and API contracts. Designed the PostgreSQL schema optimized for medical records at scale.",
-      },
-      {
-        title: "UI/UX Design",
-        desc: "Designed a clean, consumer-grade health interface — intuitive dashboards, appointment cards, symptom charts — prioritizing clarity over complexity.",
-      },
-      {
-        title: "Frontend — React + Tailwind",
-        desc: "Built the full interface with React and Tailwind. Protected routes, real-time health data widgets, appointment scheduling, and animated dashboards.",
-      },
-      {
-        title: "Backend API — Spring Boot",
-        desc: "Developed a secure REST API with Spring Boot. Complete CRUD for patients, appointments and records, JWT middleware, and Spring Security for role-based access.",
-      },
-      {
-        title: "Authentication & Security",
-        desc: "JWT multi-role auth with Spring Security. Complete data isolation between patients, doctors and admins. Zero critical vulnerabilities in production.",
-      },
-      {
-        title: "Production Deployment",
-        desc: "Deployed on Vercel (frontend) with optimized PostgreSQL backend. SSL, CORS, and environment-based secrets configured. Stable with 10K+ active users.",
-      },
-    ],
-    results: [
-      "Live in production at healthsod.vercel.app",
-      "10 000+ patients and 500+ doctors onboarded",
-      "4.9★ rating on App Store",
-      "Delivered solo in 4 weeks from concept to production",
-      "Zero critical security incidents since launch",
-    ],
     stack: ["React", "Spring Boot", "PostgreSQL", "JWT", "Java", "Tailwind CSS", "Vercel"],
     github: "https://github.com/DorianOndoua",
     demoUrl: null,
@@ -99,65 +58,11 @@ const projects: Project[] = [
   {
     id: "sira",
     index: "02",
-    label: "Magazine",
     title: "SIRA Magazine",
-    tagline: "Digital impact magazine for Africa",
-    description:
-      "A premium editorial platform built with Next.js 14, Framer Motion, and a custom CMS — designed to amplify humanitarian projects and social entrepreneurs across Africa.",
     accentColor: "#b57efd",
     coverImage: "/logo/sira.png",
     gradient: "linear-gradient(135deg, #2d0d60 0%, #0d1b24 100%)",
-    metrics: ["6 weeks", "Solo dev", "CMS dashboard"],
     icon: <BookOpen className="h-8 w-8" />,
-    overview:
-      "SIRA Magazine is a premium editorial platform that amplifies the voices of humanitarian projects, social entrepreneurs, and high-impact initiatives across Africa. Built with Next.js 14 and an Awwwards-level design system, it combines magazine-quality storytelling with modern web performance.",
-    challenge:
-      "High-impact projects in Africa remain invisible — buried in generalist platforms that don't tell their stories properly. SIRA needed a platform that felt as premium as the stories it tells, with a CMS simple enough for non-technical editors, and performance good enough to reach readers on slow connections.",
-    goals: [
-      "Design an Awwwards-level editorial interface that commands attention",
-      "Build a CMS dashboard for non-technical editors",
-      "Achieve Lighthouse 95+ performance score",
-      "Implement advanced scroll animations that enhance storytelling",
-      "Create a fully responsive design optimized for mobile readers",
-      "Build a scalable content architecture for future growth",
-    ],
-    process: [
-      {
-        title: "Editorial Concept",
-        desc: "Defined the content architecture, section hierarchy, and narrative flow. Researched premium magazine sites and created a moodboard aligned with African visual identity.",
-      },
-      {
-        title: "Design System",
-        desc: "Created a complete design system in Figma — typography scale, color tokens, component library, and editorial grid. Inspired by NYT, The Atlantic, and Awwwards winners.",
-      },
-      {
-        title: "Frontend — Next.js + TypeScript",
-        desc: "Built with Next.js 14 App Router, TypeScript, and Tailwind. Implemented SSG for performance, dynamic routing for articles, and custom image optimization.",
-      },
-      {
-        title: "Animation System",
-        desc: "Designed a comprehensive animation system with Framer Motion — scroll-triggered reveals, parallax layers, stagger effects, and smooth page transitions.",
-      },
-      {
-        title: "CMS & Content",
-        desc: "Built a lightweight CMS dashboard allowing editors to publish articles, manage categories, upload media, and preview content in real time — no coding required.",
-      },
-      {
-        title: "SEO & Deployment",
-        desc: "Optimized for technical SEO with structured data, Open Graph, and SSR. Deployed on Vercel with edge caching. Achieved 95+ Lighthouse across all categories.",
-      },
-    ],
-    results: [
-      "Awwwards-level design quality validated by the community",
-      "Lighthouse 95+ across Performance, SEO, and Accessibility",
-      "Advanced animations that genuinely enhance storytelling",
-      "CMS enabling non-technical editors to publish independently",
-      "Delivered in 6 weeks as a solo full-stack developer",
-    ],
-    testimonial: {
-      text: "The platform exceeded our expectations. The design is stunning, the performance is incredible, and the CMS is so intuitive our editors adopted it immediately. Dorian handled everything from architecture to deployment with flawless precision.",
-      author: "SIRA Magazine Editorial Team",
-    },
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     github: "",
     demoUrl: null,
@@ -166,61 +71,11 @@ const projects: Project[] = [
   {
     id: "wealthflow",
     index: "03",
-    label: "Fintech",
     title: "WealthFlow",
-    tagline: "Votre argent, enfin sous contrôle.",
-    description:
-      "WealthFlow réunit vos revenus, dépenses et objectifs d'épargne dans un dashboard limpide. Application web full-stack de gestion de budget personnel — suivi des transactions, budgets mensuels, graphiques et export CSV.",
     accentColor: "#4efda0",
     coverImage: "/logo/wealthflow.png",
     gradient: "linear-gradient(135deg, #0d4030 0%, #0d1b24 100%)",
-    metrics: ["Live en production", "Budgets & objectifs", "Export CSV"],
     icon: <Wallet className="h-8 w-8" />,
-    overview:
-      "WealthFlow is a full-stack personal finance application that brings income, expenses, and savings goals together in a crystal-clear dashboard. It lets users track every transaction by category, set monthly budgets, define savings goals, and visualize where every euro goes — without spreadsheets or hassle.",
-    challenge:
-      "Most people lose track of their money across scattered spreadsheets and banking apps that never tell the full story. WealthFlow was built to unify income, expenses, and savings into a single clear view — with real-time charts, category budgets, overspend alerts, and goal tracking that actually motivate better financial habits.",
-    goals: [
-      "Centralize income, expenses and savings goals in one dashboard",
-      "Track transactions by category with clear visual breakdowns",
-      "Set monthly category budgets with overspend alerts",
-      "Define savings goals and track their progress over time",
-      "Surface insights through bar, donut and balance-evolution charts",
-      "Let users export their full financial data to CSV",
-    ],
-    process: [
-      {
-        title: "Product Architecture",
-        desc: "Modeled transactions, categories, budgets, savings goals and notifications. Designed the data schema around monthly aggregation for fast budget and balance computations.",
-      },
-      {
-        title: "UI/UX Design",
-        desc: "Designed a crystal-clear finance dashboard — income vs expenses, category breakdowns, and goal progress — prioritizing legibility so users instantly see where every euro goes.",
-      },
-      {
-        title: "Data Visualization",
-        desc: "Built bar charts (income vs expenses), a donut chart for category distribution, and a balance-evolution line chart — turning raw transactions into actionable insight.",
-      },
-      {
-        title: "Budgets & Goals Engine",
-        desc: "Implemented monthly category budgets with overspend detection, and savings goals with live progress tracking — the core logic that drives the app's value.",
-      },
-      {
-        title: "Notifications & Export",
-        desc: "Added in-app notifications (budget exceeded, goal reached) and a one-click CSV export so users keep full ownership of their financial data.",
-      },
-      {
-        title: "Production Deployment",
-        desc: "Deployed on Vercel with environment-based secrets, SSL and optimized builds. Stable and live for daily personal-finance tracking.",
-      },
-    ],
-    results: [
-      "Live in production at controle-money.vercel.app",
-      "Unified dashboard for income, expenses and savings goals",
-      "Monthly budgets with real-time overspend alerts",
-      "Bar, donut and balance-evolution charts for instant insight",
-      "Savings-goal tracking and one-click CSV export",
-    ],
     stack: ["React", "Spring Boot", "PostgreSQL", "JWT", "Java", "Tailwind CSS", "Vercel"],
     github: "https://github.com/DorianOndoua",
     demoUrl: null,
@@ -315,7 +170,7 @@ function SectionLabel({ text, color }: { text: string; color: string }) {
 }
 
 /* ─── Case Study Modal ─── */
-function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: () => void }) {
+function CaseStudyModal({ project: p, ui, onClose }: { project: Project; ui: ProjectsUI; onClose: () => void }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -350,7 +205,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
           whileHover={{ background: "rgba(255,255,255,0.1)", color: "white", scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 350, damping: 25 }}
-          aria-label="Close case study"
+          aria-label={ui.closeAria}
         >
           <X className="h-4 w-4" />
         </motion.button>
@@ -381,7 +236,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
           {/* Title */}
           <div className="mb-10">
             <p className="mb-1 text-xs font-bold uppercase tracking-widest" style={{ color: p.accentColor }}>
-              {p.index} / Case Study
+              {p.index} / {ui.caseStudy}
             </p>
             <h2 className="text-white" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
               {p.title}
@@ -407,7 +262,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
             <div className="flex flex-col gap-10">
               {/* Overview */}
               <div>
-                <SectionLabel text="Overview" color={p.accentColor} />
+                <SectionLabel text={ui.overview} color={p.accentColor} />
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
                   {p.overview}
                 </p>
@@ -415,7 +270,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
 
               {/* Challenge */}
               <div>
-                <SectionLabel text="The Challenge" color={p.accentColor} />
+                <SectionLabel text={ui.challenge} color={p.accentColor} />
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
                   {p.challenge}
                 </p>
@@ -423,7 +278,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
 
               {/* Goals */}
               <div>
-                <SectionLabel text="Project Goals" color={p.accentColor} />
+                <SectionLabel text={ui.goals} color={p.accentColor} />
                 <ul className="flex flex-col gap-2.5">
                   {p.goals.map((g, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
@@ -437,7 +292,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
 
             {/* Right */}
             <div>
-              <SectionLabel text="Process" color={p.accentColor} />
+              <SectionLabel text={ui.process} color={p.accentColor} />
               <div className="flex flex-col gap-3">
                 {p.process.map((step, i) => (
                   <div
@@ -462,7 +317,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
 
           {/* Results */}
           <div className="mt-10">
-            <SectionLabel text="Results" color={p.accentColor} />
+            <SectionLabel text={ui.results} color={p.accentColor} />
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
               {p.results.map((r, i) => (
                 <div
@@ -495,7 +350,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
           {/* Tech Stack */}
           <div className="mt-10">
             <p className="mb-3 text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
-              Tech Stack
+              {ui.techStack}
             </p>
             <div className="flex flex-wrap gap-2">
               {p.stack.map((s) => (
@@ -523,7 +378,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                Visit website
+                {ui.visitWebsite}
                 <ArrowUpRight className="h-4 w-4" />
               </motion.a>
             )}
@@ -538,7 +393,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 350, damping: 22 }}
               >
-                View on GitHub
+                {ui.viewGithub}
               </motion.a>
             )}
           </div>
@@ -546,7 +401,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
           {/* Bottom CTA */}
           <div className="mt-14 border-t pt-10 text-center" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
             <p className="mb-4 text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
-              Interested in a project like this?
+              {ui.interested}
             </p>
             <motion.a
               href="#contact"
@@ -557,7 +412,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              Start your project →
+              {ui.startProject}
             </motion.a>
           </div>
         </motion.div>
@@ -567,7 +422,7 @@ function CaseStudyModal({ project: p, onClose }: { project: Project; onClose: ()
 }
 
 /* ─── Project card (portfolio view) ─── */
-function ProjectCard({ p, onViewCaseStudy }: { p: Project; onViewCaseStudy: () => void }) {
+function ProjectCard({ p, ui, onViewCaseStudy }: { p: Project; ui: ProjectsUI; onViewCaseStudy: () => void }) {
   return (
     <SpotlightCard
       initial={{ opacity: 0, y: 48 }}
@@ -659,7 +514,7 @@ function ProjectCard({ p, onViewCaseStudy }: { p: Project; onViewCaseStudy: () =
               }}
               whileTap={{ scale: 0.97 }}
             >
-              View case study
+              {ui.viewCaseStudy}
             </motion.button>
 
             {p.live ? (
@@ -676,7 +531,7 @@ function ProjectCard({ p, onViewCaseStudy }: { p: Project; onViewCaseStudy: () =
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Visit website
+                {ui.visitWebsite}
                 <ArrowUpRight className="h-4 w-4" />
               </motion.a>
             ) : (
@@ -693,7 +548,7 @@ function ProjectCard({ p, onViewCaseStudy }: { p: Project; onViewCaseStudy: () =
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                View on GitHub
+                {ui.viewGithub}
                 <ArrowUpRight className="h-4 w-4" />
               </motion.a>
             )}
@@ -706,6 +561,14 @@ function ProjectCard({ p, onViewCaseStudy }: { p: Project; onViewCaseStudy: () =
 
 /* ─── Main Projects section ─── */
 export function Projects() {
+  const { t } = useLang();
+  const ui = t.projects.ui;
+  // Merge static (ids, colors, links) with the active-language copy.
+  const projects: Project[] = projectStatic.map((s) => ({
+    ...s,
+    ...t.projects.items[s.id as keyof typeof t.projects.items],
+  }));
+
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   return (
@@ -723,7 +586,7 @@ export function Projects() {
               className="mb-3 text-sm font-semibold tracking-widest uppercase"
               style={{ color: "#4efdfd" }}
             >
-              Projects
+              {t.projects.eyebrow}
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 22 }}
@@ -732,7 +595,7 @@ export function Projects() {
               viewport={{ once: true, margin: "-80px" }}
               className="text-white"
             >
-              What I've built
+              {t.projects.heading}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
@@ -742,7 +605,7 @@ export function Projects() {
               className="mt-4 max-w-lg text-sm"
               style={{ color: "rgba(255,255,255,0.45)" }}
             >
-              Click "View case study" on any project to explore the full process — from problem to production.
+              {t.projects.intro}
             </motion.p>
           </div>
 
@@ -752,6 +615,7 @@ export function Projects() {
               <ProjectCard
                 key={p.id}
                 p={p}
+                ui={ui}
                 onViewCaseStudy={() => setActiveProject(p)}
               />
             ))}
@@ -764,6 +628,7 @@ export function Projects() {
         {activeProject && (
           <CaseStudyModal
             project={activeProject}
+            ui={ui}
             onClose={() => setActiveProject(null)}
           />
         )}

@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SpotlightCard } from "@/components/portfolio/premium";
+import { useLang } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -120,6 +121,13 @@ function CategoryCard({ cat, ci }: { cat: Category; ci: number }) {
 
 /* ─── Stack section ─── */
 export function Stack() {
+  const { t } = useLang();
+  // Translate only the category labels; skill names stay as-is.
+  const localized = categories.map((cat, i) => ({
+    ...cat,
+    label: t.stack.categories[i],
+  }));
+
   return (
     <section id="stack" className="w-full" style={{ background: "#080f1a" }}>
       {/* Separator */}
@@ -139,7 +147,7 @@ export function Stack() {
             className="mb-3 text-sm font-semibold tracking-widest uppercase"
             style={{ color: "#4efdfd" }}
           >
-            Technical Stack
+            {t.stack.eyebrow}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 22 }}
@@ -148,14 +156,14 @@ export function Stack() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-white"
           >
-            Tools I Master
+            {t.stack.heading}
           </motion.h2>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((cat, ci) => (
-            <CategoryCard key={cat.label} cat={cat} ci={ci} />
+          {localized.map((cat, ci) => (
+            <CategoryCard key={ci} cat={cat} ci={ci} />
           ))}
         </div>
       </div>
