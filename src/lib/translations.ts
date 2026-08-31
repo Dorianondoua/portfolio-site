@@ -332,6 +332,40 @@ const en = {
           "Savings-goal tracking and one-click CSV export",
         ],
       },
+      siccam: {
+        label: "Agri-export",
+        tagline: "Cameroon's finest produce, delivered on schedule.",
+        description:
+          "A premium website for SICCAM SARL, a Cameroonian agricultural exporter of cocoa, coffee, soybeans, and Penja white pepper. It highlights traceability, lot quality control, and exports from Douala and Kribi.",
+        metrics: ["4 export sectors", "15 ports served", "Reply within 24h"],
+        overview:
+          "SICCAM SARL is a corporate showcase website for a Cameroonian agricultural exporter. It presents cocoa, coffee, soybeans, and Penja white pepper, alongside the company's quality standards, logistics process, and quotation request flow.",
+        challenge:
+          "The platform had to communicate the reliability of an export partner through direct sourcing, lot traceability, documented quality control, and logistics coordination to international destinations.",
+        goals: [
+          "Present the agricultural export offer with a clear, premium visual identity",
+          "Highlight the origins and specifications of the four product sectors",
+          "Make the end-to-end process—from producer to vessel—easy to understand",
+          "Build confidence through traceability, certificates, and quality controls",
+          "Showcase export destinations, transit times, and available Incoterms",
+          "Make it simple for buyers to request a quote and product samples",
+        ],
+        process: [
+          { title: "Content strategy", desc: "Structured the site around activities, products, expertise, export process, destinations, and quote requests." },
+          { title: "Visual direction", desc: "Created an agricultural identity using natural tones, product imagery, and confident typography." },
+          { title: "Product catalogue", desc: "Designed clear product sections with origin and quality specifications for each export sector." },
+          { title: "Traceability journey", desc: "Made the six stages—from producers to shipment—clear and easy to follow." },
+          { title: "Conversion flow", desc: "Integrated calls to action and a quotation form for products, volumes, and destinations." },
+          { title: "Deployment", desc: "Published the responsive website on Vercel for fast access across desktop and mobile." },
+        ],
+        results: [
+          "Live at siccam-sarl.vercel.app",
+          "Four agricultural export sectors clearly presented",
+          "Six-step traceability and logistics process",
+          "Export capabilities covering 15 ports from Douala and Kribi",
+          "Quote request flow designed around a 24-hour response commitment",
+        ],
+      },
     },
   },
 
@@ -690,6 +724,40 @@ const fr: Dict = {
           "Budgets mensuels avec alertes de dépassement en temps réel",
           "Graphiques en barres, donut et évolution du solde pour un aperçu instantané",
           "Suivi des objectifs d'épargne et export CSV en un clic",
+        ],
+      },
+      siccam: {
+        label: "Agro-export",
+        tagline: "Le meilleur du terroir camerounais, livré dans les délais.",
+        description:
+          "Un site vitrine premium pour SICCAM SARL, exportateur agricole camerounais de cacao, café, soja grain et poivre blanc de Penja. Il met en avant la traçabilité, le contrôle qualité par lot et les expéditions depuis Douala et Kribi.",
+        metrics: ["4 filières exportées", "15 ports desservis", "Réponse sous 24 h"],
+        overview:
+          "SICCAM SARL est un site vitrine corporate conçu pour un exportateur agricole camerounais. Il présente le cacao, le café, le soja grain et le poivre blanc de Penja, ainsi que les exigences qualité, le processus logistique et le parcours de demande de devis.",
+        challenge:
+          "Le site devait exprimer la fiabilité d'un partenaire export : achat direct auprès de producteurs identifiés, traçabilité par lot, contrôle qualité documenté et coordination logistique jusqu'aux destinations internationales.",
+        goals: [
+          "Présenter l'offre d'export agricole dans une identité visuelle claire et premium",
+          "Mettre en valeur les origines et les spécifications des quatre filières produits",
+          "Rendre le processus complet — du producteur au navire — facile à comprendre",
+          "Renforcer la confiance avec la traçabilité, les certificats et les contrôles qualité",
+          "Présenter les destinations, délais de transit et Incoterms disponibles",
+          "Faciliter les demandes de devis et d'échantillons pour les acheteurs",
+        ],
+        process: [
+          { title: "Stratégie de contenu", desc: "Structuration du site autour des activités, produits, savoir-faire, procédé d'export, destinations et devis." },
+          { title: "Direction artistique", desc: "Création d'un univers agricole fondé sur des tonalités naturelles, des visuels produits et une typographie affirmée." },
+          { title: "Catalogue produits", desc: "Conception de sections lisibles avec les origines et spécifications qualité de chaque filière." },
+          { title: "Parcours de traçabilité", desc: "Mise en récit des six étapes, des producteurs identifiés jusqu'à l'embarquement." },
+          { title: "Parcours de conversion", desc: "Intégration d'appels à l'action et d'un formulaire de devis pour les produits, volumes et destinations." },
+          { title: "Mise en ligne", desc: "Déploiement du site responsive sur Vercel pour une expérience rapide sur ordinateur comme sur mobile." },
+        ],
+        results: [
+          "En ligne sur siccam-sarl.vercel.app",
+          "Quatre filières d'export agricole clairement présentées",
+          "Un procédé de traçabilité et de logistique en six étapes",
+          "Des capacités d'export vers 15 ports depuis Douala et Kribi",
+          "Un parcours de demande de devis conçu autour d'une réponse sous 24 h",
         ],
       },
     },

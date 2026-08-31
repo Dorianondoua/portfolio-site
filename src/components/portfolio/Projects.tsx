@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUpRight, Heart, BookOpen, Wallet } from "lucide-react";
+import { X, ArrowUpRight, Heart, BookOpen, Wallet, Wheat } from "lucide-react";
 import { SpotlightCard } from "@/components/portfolio/premium";
 import { useLang } from "@/lib/i18n";
 import type { Dict } from "@/lib/translations";
@@ -80,6 +80,19 @@ const projectStatic: ProjectStatic[] = [
     github: "https://github.com/DorianOndoua",
     demoUrl: null,
     live: "https://controle-money.vercel.app",
+  },
+  {
+    id: "siccam",
+    index: "04",
+    title: "SICCAM SARL",
+    accentColor: "#e5b94d",
+    coverImage: "/logo/SICCAM.png",
+    gradient: "linear-gradient(135deg, #5a3b18 0%, #172018 100%)",
+    icon: <Wheat className="h-8 w-8" />,
+    stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+    github: "",
+    demoUrl: null,
+    live: "https://siccam-sarl.vercel.app/",
   },
 ];
 
