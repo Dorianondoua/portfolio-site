@@ -170,6 +170,7 @@ const en = {
       interested: "Interested in a project like this?",
       startProject: "Start your project →",
       closeAria: "Close case study",
+      frontendOnly: "Frontend only · no business logic",
     },
     items: {
       healthcare: {
@@ -364,6 +365,35 @@ const en = {
           "Six-step traceability and logistics process",
           "Export capabilities covering 15 ports from Douala and Kribi",
           "Quote request flow designed around a 24-hour response commitment",
+        ],
+      },
+      cream: {
+        label: "Creative showcase",
+        tagline: "A playful, immersive ice cream experience.",
+        description:
+          "Cream is a visual frontend concept for an artisanal ice cream brand. It showcases an engaging interface, smooth interactions, and a strong visual identity without business logic or a backend.",
+        metrics: ["Frontend only", "Responsive design", "Interactive UI"],
+        overview:
+          "Projet Cream is a polished frontend showcase built around a fictional artisanal ice cream brand. The work focuses on visual storytelling, product presentation, and a refined browsing experience.",
+        challenge:
+          "Create a memorable e-commerce-inspired experience through interface design and motion alone, while keeping the project intentionally free of business logic, data persistence, payments, and backend services.",
+        goals: [
+          "Create a distinctive and appetizing visual identity",
+          "Build a responsive browsing experience across screen sizes",
+          "Use motion and interaction to make product discovery engaging",
+          "Present flavours, portions, and calls to action clearly",
+          "Demonstrate frontend craftsmanship without a backend",
+        ],
+        process: [
+          { title: "Visual direction", desc: "Established the cheerful palette, rounded shapes, bold typography, and product-led composition." },
+          { title: "Interface design", desc: "Designed the navigation, hero, flavour cards, controls, and calls to action as one cohesive experience." },
+          { title: "Responsive frontend", desc: "Built a fluid interface that adapts the composition and interactions for desktop and mobile." },
+          { title: "Interaction polish", desc: "Added transitions and micro-interactions to make exploration feel smooth and playful." },
+        ],
+        results: [
+          "Live frontend demonstration at cream-projet.vercel.app",
+          "Responsive, product-focused visual experience",
+          "No backend, payment flow, or business logic included",
         ],
       },
     },
@@ -564,6 +594,7 @@ const fr: Dict = {
       interested: "Intéressé par un projet de ce type ?",
       startProject: "Démarrer votre projet →",
       closeAria: "Fermer l'étude de cas",
+      frontendOnly: "Frontend uniquement · sans logique métier",
     },
     items: {
       healthcare: {
@@ -724,6 +755,35 @@ const fr: Dict = {
           "Budgets mensuels avec alertes de dépassement en temps réel",
           "Graphiques en barres, donut et évolution du solde pour un aperçu instantané",
           "Suivi des objectifs d'épargne et export CSV en un clic",
+        ],
+      },
+      cream: {
+        label: "Vitrine créative",
+        tagline: "Une expérience glacée ludique et immersive.",
+        description:
+          "Cream est un concept frontend visuel pour une marque de glaces artisanales. Il met en avant une interface engageante, des interactions fluides et une identité forte, sans logique métier ni backend.",
+        metrics: ["Frontend uniquement", "Design responsive", "Interface interactive"],
+        overview:
+          "Projet Cream est une vitrine frontend soignée autour d'une marque fictive de glaces artisanales. Le projet se concentre sur le storytelling visuel, la présentation des produits et une navigation travaillée.",
+        challenge:
+          "Créer une expérience inspirée de l'e-commerce, mémorable grâce au design et au mouvement, tout en gardant volontairement le projet sans logique métier, persistance de données, paiement ou service backend.",
+        goals: [
+          "Créer une identité visuelle distinctive et gourmande",
+          "Construire une expérience responsive sur tous les écrans",
+          "Utiliser le mouvement et l'interaction pour rendre la découverte attractive",
+          "Présenter clairement les parfums, formats et appels à l'action",
+          "Démontrer le savoir-faire frontend sans backend",
+        ],
+        process: [
+          { title: "Direction artistique", desc: "Définition de la palette joyeuse, des formes arrondies, de la typographie expressive et d'une composition centrée sur le produit." },
+          { title: "Conception de l'interface", desc: "Design de la navigation, du hero, des cartes parfums, des contrôles et des appels à l'action dans une expérience cohérente." },
+          { title: "Frontend responsive", desc: "Construction d'une interface fluide dont la composition et les interactions s'adaptent au desktop comme au mobile." },
+          { title: "Finitions d'interaction", desc: "Ajout de transitions et micro-interactions pour une exploration douce et ludique." },
+        ],
+        results: [
+          "Démonstration frontend en ligne sur cream-projet.vercel.app",
+          "Expérience visuelle responsive centrée sur les produits",
+          "Aucun backend, paiement ou logique métier inclus",
         ],
       },
       siccam: {

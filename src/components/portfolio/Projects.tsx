@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUpRight, Heart, BookOpen, Wallet, Wheat } from "lucide-react";
+import { X, ArrowUpRight, Heart, BookOpen, Wallet, Wheat, IceCream } from "lucide-react";
 import { SpotlightCard } from "@/components/portfolio/premium";
 import { useLang } from "@/lib/i18n";
 import type { Dict } from "@/lib/translations";
@@ -32,13 +32,14 @@ interface Project {
   github: string;
   demoUrl: string | null;
   live: string | null;
+  isFrontendOnly?: boolean;
   icon: React.ReactNode;
 }
 
 /* ─── Static data (non-translated: ids, colors, images, links, stack) ─── */
 type ProjectStatic = Pick<
   Project,
-  "id" | "index" | "title" | "accentColor" | "coverImage" | "gradient" | "stack" | "github" | "demoUrl" | "live" | "icon"
+  "id" | "index" | "title" | "accentColor" | "coverImage" | "gradient" | "stack" | "github" | "demoUrl" | "live" | "isFrontendOnly" | "icon"
 >;
 
 const projectStatic: ProjectStatic[] = [
@@ -93,6 +94,20 @@ const projectStatic: ProjectStatic[] = [
     github: "",
     demoUrl: null,
     live: "https://siccam-sarl.vercel.app/",
+  },
+  {
+    id: "cream",
+    index: "05",
+    title: "Projet Cream",
+    accentColor: "#a8e6b4",
+    coverImage: "/logo/CREAM.png",
+    gradient: "linear-gradient(135deg, #2d8154 0%, #0d1b24 100%)",
+    icon: <IceCream className="h-8 w-8" />,
+    stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+    github: "",
+    demoUrl: null,
+    live: "https://cream-projet.vercel.app/",
+    isFrontendOnly: true,
   },
 ];
 
@@ -484,6 +499,14 @@ function ProjectCard({ p, ui, onViewCaseStudy }: { p: Project; ui: ProjectsUI; o
             >
               {p.label}
             </span>
+            {p.isFrontendOnly && (
+              <span
+                className="rounded-full px-3 py-1 text-xs font-semibold"
+                style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.75)", border: "1px solid rgba(255,255,255,0.16)" }}
+              >
+                {ui.frontendOnly}
+              </span>
+            )}
             <span className="text-xs font-bold opacity-30 text-white">{p.index}</span>
           </div>
 
