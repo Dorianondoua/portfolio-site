@@ -54,7 +54,7 @@ const projectStatic: ProjectStatic[] = [
     stack: ["React", "Spring Boot", "PostgreSQL", "JWT", "Java", "Tailwind CSS", "Vercel"],
     github: "https://github.com/DorianOndoua",
     demoUrl: null,
-    live: "https://healthsod.vercel.app",
+    live: "http://51.255.42.45",
   },
   {
     id: "sira",
