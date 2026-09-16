@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useLenis } from "@/hooks/use-lenis";
 import { LanguageProvider } from "@/lib/i18n";
+import { OG_IMAGE, SITE_NAME, SITE_URL, SOCIAL_PROFILES } from "@/lib/site";
 
 import appCss from "../styles.css?url";
 
@@ -76,7 +77,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Dorian Ondoua — Full-Stack Developer" },
       { name: "description", content: "Full-Stack Developer specialized in React, Next.js & Spring Boot. I build modern, fast, and premium web applications." },
+      { name: "author", content: SITE_NAME },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: SITE_NAME,
+          url: SITE_URL,
+          image: OG_IMAGE,
+          jobTitle: "Full-Stack Developer",
+          email: "mailto:ondouadorian188@gmail.com",
+          sameAs: SOCIAL_PROFILES,
+          knowsAbout: [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Spring Boot",
+            "Java",
+            "PostgreSQL",
+            "Tailwind CSS",
+          ],
+        }),
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-site-psi-liart.vercel.app/sitemap.xml

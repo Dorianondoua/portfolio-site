@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { canonical, OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { PortfolioHero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
 import { Stack } from "@/components/portfolio/Stack";
@@ -14,15 +15,20 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Dorian Ondoua — Full-Stack Developer" },
-      { name: "description", content: "Full-Stack Developer specialized in React, Next.js & Spring Boot. I build modern, fast, and premium web applications." },
+      { title: "Dorian Ondoua — Full-Stack Developer (React, Next.js & Spring Boot)" },
+      { name: "description", content: "Full-Stack Developer specialized in React, Next.js & Spring Boot. I build modern, fast, and premium web applications — from UI to secured APIs." },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:url", content: canonical("/") },
       { property: "og:title", content: "Dorian Ondoua — Full-Stack Developer" },
       { property: "og:description", content: "Full-Stack Developer specialized in React, Next.js & Spring Boot. I build modern, fast, and premium web applications." },
-      { property: "og:image", content: "/mark.svg" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Dorian Ondoua — Full-Stack Developer" },
       { name: "twitter:description", content: "Full-Stack Developer specialized in React, Next.js & Spring Boot. I build modern, fast, and premium web applications." },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
+    links: [{ rel: "canonical", href: canonical("/") }],
   }),
 });
 
