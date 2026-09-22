@@ -48,7 +48,7 @@ const projectStatic: ProjectStatic[] = [
     index: "01",
     title: "HealthSOD",
     accentColor: "#4efdfd",
-    coverImage: "/logo/healthsod.png",
+    coverImage: "/logo/healthsod.webp",
     gradient: "linear-gradient(135deg, #0d4060 0%, #0d1b24 100%)",
     icon: <Heart className="h-8 w-8" />,
     stack: ["React", "Spring Boot", "PostgreSQL", "JWT", "Java", "Tailwind CSS", "Vercel"],
@@ -61,7 +61,7 @@ const projectStatic: ProjectStatic[] = [
     index: "02",
     title: "SIRA Magazine",
     accentColor: "#b57efd",
-    coverImage: "/logo/sira.png",
+    coverImage: "/logo/sira.webp",
     gradient: "linear-gradient(135deg, #2d0d60 0%, #0d1b24 100%)",
     icon: <BookOpen className="h-8 w-8" />,
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
@@ -74,7 +74,7 @@ const projectStatic: ProjectStatic[] = [
     index: "03",
     title: "WealthFlow",
     accentColor: "#4efda0",
-    coverImage: "/logo/wealthflow.png",
+    coverImage: "/logo/wealthflow.webp",
     gradient: "linear-gradient(135deg, #0d4030 0%, #0d1b24 100%)",
     icon: <Wallet className="h-8 w-8" />,
     stack: ["React", "Spring Boot", "PostgreSQL", "JWT", "Java", "Tailwind CSS", "Vercel"],
@@ -87,7 +87,7 @@ const projectStatic: ProjectStatic[] = [
     index: "04",
     title: "SICCAM SARL",
     accentColor: "#e5b94d",
-    coverImage: "/logo/SICCAM.png",
+    coverImage: "/logo/SICCAM.webp",
     gradient: "linear-gradient(135deg, #5a3b18 0%, #172018 100%)",
     icon: <Wheat className="h-8 w-8" />,
     stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
@@ -100,7 +100,7 @@ const projectStatic: ProjectStatic[] = [
     index: "05",
     title: "Projet Cream",
     accentColor: "#a8e6b4",
-    coverImage: "/logo/CREAM.png",
+    coverImage: "/logo/CREAM.webp",
     gradient: "linear-gradient(135deg, #2d8154 0%, #0d1b24 100%)",
     icon: <IceCream className="h-8 w-8" />,
     stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
@@ -144,6 +144,8 @@ function LaptopMockup({ src, alt, gradient, icon, accentColor }: {
               alt={alt}
               className="w-full object-cover object-top"
               style={{ maxHeight: "300px" }}
+              loading="lazy"
+              decoding="async"
             />
           ) : (
             <div

@@ -298,9 +298,13 @@ function PhotoFrame() {
         style={{ border: "1px solid rgba(78,253,253,0.2)" }}
       >
         <img
-          src="/dorian.png"
+          src="/dorian.webp"
           alt="Dorian Ondoua"
           className="h-full w-full object-cover object-top"
+          width={800}
+          height={784}
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
     </div>
