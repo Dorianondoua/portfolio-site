@@ -396,6 +396,37 @@ const en = {
           "No backend, payment flow, or business logic included",
         ],
       },
+      pullsod: {
+        label: "E-commerce",
+        tagline: "Confidence, wrapped in warmth.",
+        description:
+          "Jacket Masters is a fashion e-commerce storefront for a puffer jacket brand, with a filterable catalogue, product pages with size and colour selection, a shopping bag, and a wishlist.",
+        metrics: ["12-piece catalogue", "5 categories", "4 colourways"],
+        overview:
+          "Jacket Masters is an online store for a puffer jacket brand that treats outerwear as a style statement. The storefront presents a 12-piece collection of cropped puffers, long coats, hooded puffers, vests, and accessories in four colourways, built for style-conscious shoppers across Europe.",
+        challenge:
+          "The store had to feel as premium as a fashion label while staying easy to shop: let customers browse by category or colour, show technical details such as fill power, materials, and weight, and lead them from discovery to the bag with as little friction as possible.",
+        goals: [
+          "Create a fashion-forward visual identity around the brand promise",
+          "Organise the catalogue by category and colourway with shareable filters",
+          "Present product details, sizes, and technical specs clearly",
+          "Build a smooth shopping flow with bag and wishlist",
+          "Build trust with reviews, fast shipping, and free returns",
+        ],
+        process: [
+          { title: "Brand direction", desc: "Defined the visual tone, typography, and editorial photography layout around the tagline \"Confidence, wrapped in warmth.\"" },
+          { title: "Catalogue architecture", desc: "Structured 12 products into five categories with slug-based product pages and query-parameter filters by category and colour." },
+          { title: "Product experience", desc: "Designed product pages with colour and size selection, pricing and discounts, and specs such as 650 fill-power down and recycled nylon." },
+          { title: "Shopping flow", desc: "Built the shopping bag, wishlist, and newsletter signup to support the path from discovery to purchase." },
+          { title: "Performance & deployment", desc: "Used Next.js image optimisation for fast-loading product visuals and deployed the store on Vercel." },
+        ],
+        results: [
+          "Live on pullsod.vercel.app",
+          "12-piece collection in five categories and four colourways",
+          "Category and colour filtering with shareable URLs",
+          "Bag, wishlist, and reviews built into the shopping experience",
+        ],
+      },
     },
   },
 
@@ -784,6 +815,37 @@ const fr: Dict = {
           "Démonstration frontend en ligne sur cream-projet.vercel.app",
           "Expérience visuelle responsive centrée sur les produits",
           "Aucun backend, paiement ou logique métier inclus",
+        ],
+      },
+      pullsod: {
+        label: "E-commerce",
+        tagline: "La confiance, enveloppée de chaleur.",
+        description:
+          "Jacket Masters est une boutique e-commerce mode pour une marque de doudounes, avec un catalogue filtrable, des fiches produit avec choix de taille et de coloris, un panier et une liste de souhaits.",
+        metrics: ["Catalogue de 12 pièces", "5 catégories", "4 coloris"],
+        overview:
+          "Jacket Masters est la boutique en ligne d'une marque de doudounes qui fait du vêtement d'hiver une pièce de style. Le site présente une collection de 12 pièces (doudounes courtes, manteaux longs, doudounes à capuche, gilets et accessoires) en quatre coloris, pensée pour une clientèle européenne attentive au style.",
+        challenge:
+          "La boutique devait dégager l'image premium d'une marque de mode tout en restant simple à utiliser : navigation par catégorie ou par coloris, mise en avant des détails techniques (pouvoir gonflant, matières, poids) et un parcours fluide de la découverte jusqu'au panier.",
+        goals: [
+          "Créer une identité visuelle mode autour de la promesse de la marque",
+          "Organiser le catalogue par catégorie et coloris avec des filtres partageables",
+          "Présenter clairement les détails produit, les tailles et les caractéristiques techniques",
+          "Construire un parcours d'achat fluide avec panier et liste de souhaits",
+          "Renforcer la confiance avec les avis, la livraison rapide et les retours gratuits",
+        ],
+        process: [
+          { title: "Direction de marque", desc: "Définition du ton visuel, de la typographie et d'une mise en page éditoriale autour du slogan « Confidence, wrapped in warmth »." },
+          { title: "Architecture du catalogue", desc: "Organisation de 12 produits en cinq catégories, avec des fiches produit par slug et des filtres par catégorie et coloris dans l'URL." },
+          { title: "Expérience produit", desc: "Conception des fiches produit avec choix du coloris et de la taille, prix et remises, et caractéristiques comme le duvet 650 cuin et le nylon recyclé." },
+          { title: "Parcours d'achat", desc: "Mise en place du panier, de la liste de souhaits et de l'inscription à la newsletter pour accompagner la découverte jusqu'à l'achat." },
+          { title: "Performance et mise en ligne", desc: "Optimisation des visuels produit avec Next.js Image et déploiement de la boutique sur Vercel." },
+        ],
+        results: [
+          "En ligne sur pullsod.vercel.app",
+          "Collection de 12 pièces en cinq catégories et quatre coloris",
+          "Filtres par catégorie et coloris avec URL partageables",
+          "Panier, liste de souhaits et avis intégrés à l'expérience d'achat",
         ],
       },
       siccam: {

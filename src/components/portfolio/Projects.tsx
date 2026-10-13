@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUpRight, Heart, BookOpen, Wallet, Wheat, IceCream } from "lucide-react";
+import { X, ArrowUpRight, Heart, BookOpen, Wallet, Wheat, IceCream, ShoppingBag } from "lucide-react";
 import { SpotlightCard } from "@/components/portfolio/premium";
 import { useLang } from "@/lib/i18n";
 import type { Dict } from "@/lib/translations";
@@ -107,6 +107,20 @@ const projectStatic: ProjectStatic[] = [
     github: "",
     demoUrl: null,
     live: "https://cream-projet.vercel.app/",
+    isFrontendOnly: true,
+  },
+  {
+    id: "pullsod",
+    index: "06",
+    title: "Jacket Masters",
+    accentColor: "#f2a65a",
+    coverImage: "/logo/pullsod.webp",
+    gradient: "linear-gradient(135deg, #5a3418 0%, #0d1b24 100%)",
+    icon: <ShoppingBag className="h-8 w-8" />,
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    github: "",
+    demoUrl: null,
+    live: "https://pullsod.vercel.app/",
     isFrontendOnly: true,
   },
 ];
