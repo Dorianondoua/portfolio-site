@@ -83,6 +83,7 @@ export const SpotlightCard = forwardRef<HTMLDivElement, SpotlightCardProps>(
     forwardedRef,
   ) {
     const internalRef = useRef<HTMLDivElement>(null);
+    const frame = useRef(0);
 
     const resolve = (node: HTMLDivElement | null) => {
       internalRef.current = node;
@@ -90,18 +91,23 @@ export const SpotlightCard = forwardRef<HTMLDivElement, SpotlightCardProps>(
       else if (forwardedRef) forwardedRef.current = node;
     };
 
+    // Coalesce mousemove bursts into one style write per frame.
     const handleMove = (e: MouseEvent<HTMLDivElement>) => {
-      const el = internalRef.current;
-      if (el) {
+      const { clientX, clientY } = e;
+      cancelAnimationFrame(frame.current);
+      frame.current = requestAnimationFrame(() => {
+        const el = internalRef.current;
+        if (!el) return;
         const rect = el.getBoundingClientRect();
-        el.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
-        el.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
+        el.style.setProperty("--spot-x", `${clientX - rect.left}px`);
+        el.style.setProperty("--spot-y", `${clientY - rect.top}px`);
         el.style.setProperty("--spot-o", "1");
-      }
+      });
       onMouseMove?.(e);
     };
 
     const handleLeave = (e: MouseEvent<HTMLDivElement>) => {
+      cancelAnimationFrame(frame.current);
       internalRef.current?.style.setProperty("--spot-o", "0");
       onMouseLeave?.(e);
     };
@@ -122,7 +128,7 @@ export const SpotlightCard = forwardRef<HTMLDivElement, SpotlightCardProps>(
             inset: 0,
             pointerEvents: "none",
             opacity: "var(--spot-o, 0)" as unknown as number,
-            transition: "opacity 0.35s ease",
+            transition: "opacity 0.45s cubic-bezier(0.22,1,0.36,1)",
             background: `radial-gradient(${spotlightSize}px circle at var(--spot-x, 50%) var(--spot-y, 50%), ${spotlightColor}, transparent 70%)`,
           }}
         />
@@ -141,7 +147,9 @@ export function GrainOverlay() {
     <div
       aria-hidden
       className="grain-overlay pointer-events-none fixed inset-0 z-[35]"
-      style={{ opacity: 0.04, mixBlendMode: "overlay" }}
+      // No mix-blend-mode: blending a fixed full-screen layer forces the whole
+      // page to recomposite on every scroll frame.
+      style={{ opacity: 0.03, transform: "translateZ(0)" }}
     />
   );
 }

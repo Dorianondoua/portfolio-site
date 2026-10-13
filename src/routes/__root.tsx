@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { MotionConfig } from "framer-motion";
 import { useLenis } from "@/hooks/use-lenis";
 import { LanguageProvider } from "@/lib/i18n";
 import { OG_IMAGE, SITE_NAME, SITE_URL, SOCIAL_PROFILES } from "@/lib/site";
@@ -144,8 +145,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <SmoothScrollProvider />
-        <Outlet />
+        {/* reducedMotion="user": framer-motion drops transforms when the OS asks for less motion */}
+        <MotionConfig reducedMotion="user">
+          <SmoothScrollProvider />
+          <Outlet />
+        </MotionConfig>
       </LanguageProvider>
     </QueryClientProvider>
   );

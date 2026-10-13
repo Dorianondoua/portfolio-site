@@ -33,7 +33,7 @@ export function PortfolioHero() {
       {/* ── Layer 1: Background gradient blob (slowest) ── */}
       <motion.div
         className="pointer-events-none absolute inset-0"
-        style={{ y: bgY }}
+        style={{ y: bgY, willChange: "transform" }}
       >
         <div
           className="absolute inset-0"
@@ -47,7 +47,7 @@ export function PortfolioHero() {
       {/* ── Layer 2: Ambient glow orbs (slow + pulsing) ── */}
       <motion.div
         className="pointer-events-none absolute inset-0 overflow-hidden"
-        style={{ y: orbY }}
+        style={{ y: orbY, willChange: "transform" }}
       >
         {/* Orb top-right */}
         <motion.div
@@ -55,6 +55,7 @@ export function PortfolioHero() {
           style={{
             background:
               "radial-gradient(circle, rgba(78,253,253,0.07) 0%, transparent 70%)",
+            willChange: "transform, opacity",
           }}
           animate={{ scale: [1, 1.12, 1], opacity: [0.6, 1, 0.6] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -65,6 +66,7 @@ export function PortfolioHero() {
           style={{
             background:
               "radial-gradient(circle, rgba(21,110,110,0.09) 0%, transparent 70%)",
+            willChange: "transform, opacity",
           }}
           animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.8, 0.4] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
@@ -214,8 +216,7 @@ export function PortfolioHero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.85, delay: 0.2, ease: EASE }}
-            whileHover={{ scale: 1.02 }}
-            style={{ transition: "scale 0.4s cubic-bezier(0.22,1,0.36,1)" }}
+            whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 200, damping: 24 } }}
             className="relative"
           >
             {/* Glow ring */}
@@ -224,6 +225,7 @@ export function PortfolioHero() {
               style={{
                 background: "linear-gradient(135deg, #4efdfd, #156e6e, transparent)",
                 filter: "blur(12px)",
+                willChange: "opacity",
               }}
               animate={{ opacity: [0.5, 0.8, 0.5] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}

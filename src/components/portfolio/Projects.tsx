@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Heart, BookOpen, Wallet, Wheat, IceCream, ShoppingBag } from "lucide-react";
 import { SpotlightCard } from "@/components/portfolio/premium";
 import { useLang } from "@/lib/i18n";
+import { getLenis } from "@/hooks/use-lenis";
 import type { Dict } from "@/lib/translations";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -215,12 +216,27 @@ function SectionLabel({ text, color }: { text: string; color: string }) {
 
 /* ─── Case Study Modal ─── */
 function CaseStudyModal({ project: p, ui, onClose }: { project: Project; ui: ProjectsUI; onClose: () => void }) {
+  // Freeze the page behind the modal (Lenis + native) and close on Escape.
+  useEffect(() => {
+    const lenis = getLenis();
+    lenis?.stop();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      lenis?.start();
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.3, ease: EASE }}
       className="fixed inset-0 z-100 flex flex-col overflow-hidden"
       style={{ background: "#080f1a" }}
     >
@@ -255,8 +271,8 @@ function CaseStudyModal({ project: p, ui, onClose }: { project: Project; ui: Pro
         </motion.button>
       </div>
 
-      {/* Scrollable content */}
-      <div className="flex-1 overflow-y-auto">
+      {/* Scrollable content — data-lenis-prevent hands wheel/touch back to native scrolling */}
+      <div className="flex-1 overflow-y-auto overscroll-contain" data-lenis-prevent>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -622,6 +638,7 @@ export function Projects() {
   }));
 
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const closeProject = useCallback(() => setActiveProject(null), []);
 
   return (
     <>
@@ -681,7 +698,7 @@ export function Projects() {
           <CaseStudyModal
             project={activeProject}
             ui={ui}
-            onClose={() => setActiveProject(null)}
+            onClose={closeProject}
           />
         )}
       </AnimatePresence>

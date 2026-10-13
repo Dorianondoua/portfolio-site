@@ -83,8 +83,7 @@ export function About() {
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: EASE }}
                 viewport={{ once: true, margin: "-80px" }}
                 whileHover={{
-                  y: -8,
-                  scale: 1.02,
+                  y: -6,
                   boxShadow: "0 12px 40px rgba(78,253,253,0.08)",
                   transition: { type: "spring", stiffness: 300, damping: 22 },
                 }}

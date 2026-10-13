@@ -61,8 +61,7 @@ function CategoryCard({ cat, ci }: { cat: Category; ci: number }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.65, delay: ci * 0.1, ease: EASE }}
       whileHover={{
-        y: -10,
-        scale: 1.02,
+        y: -6,
         boxShadow: "0 16px 48px rgba(78,253,253,0.07)",
         transition: { type: "spring", stiffness: 280, damping: 22 },
       }}
@@ -99,12 +98,17 @@ function CategoryCard({ cat, ci }: { cat: Category; ci: number }) {
               className="h-1 w-full overflow-hidden rounded-full"
               style={{ background: "rgba(255,255,255,0.06)" }}
             >
-              {/* Bar — driven by card's inView, NOT its own whileInView */}
+              {/* Bar — driven by card's inView, NOT its own whileInView.
+                  scaleX (compositor-only) instead of width (layout every frame). */}
               <motion.div
                 className="h-full rounded-full"
-                style={{ background: "linear-gradient(90deg, #156e6e, #4efdfd)" }}
-                initial={{ width: "0%" }}
-                animate={inView ? { width: `${item.level}%` } : { width: "0%" }}
+                style={{
+                  width: `${item.level}%`,
+                  transformOrigin: "left",
+                  background: "linear-gradient(90deg, #156e6e, #4efdfd)",
+                }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: inView ? 1 : 0 }}
                 transition={{
                   duration: 1,
                   delay: ci * 0.1 + ii * 0.08,

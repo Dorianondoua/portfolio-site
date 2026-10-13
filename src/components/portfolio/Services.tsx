@@ -72,8 +72,7 @@ export function Services() {
               transition={{ duration: 0.65, delay: 0.12 + i * 0.1, ease: EASE }}
               viewport={{ once: true, margin: "-80px" }}
               whileHover={{
-                y: -10,
-                scale: 1.02,
+                y: -6,
                 boxShadow: "0 20px 60px rgba(78,253,253,0.09)",
                 transition: { type: "spring", stiffness: 280, damping: 20 },
               }}

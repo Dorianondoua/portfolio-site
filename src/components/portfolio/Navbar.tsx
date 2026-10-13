@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 import Logo from "@/components/branding/Logo";
@@ -47,12 +47,16 @@ export function PortfolioNavbar() {
     <motion.header
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50"
       style={{
-        background: scrolled ? "rgba(8,15,26,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(78,253,253,0.08)" : "none",
+        // Same-shaped values on both sides so the browser can interpolate them.
+        background: scrolled ? "rgba(8,15,26,0.95)" : "rgba(8,15,26,0)",
+        backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
+        borderBottom: `1px solid ${scrolled ? "rgba(78,253,253,0.08)" : "rgba(78,253,253,0)"}`,
+        transition:
+          "background-color 0.4s cubic-bezier(0.22,1,0.36,1), backdrop-filter 0.4s cubic-bezier(0.22,1,0.36,1), border-color 0.4s cubic-bezier(0.22,1,0.36,1)",
       }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-5">
@@ -99,10 +103,13 @@ export function PortfolioNavbar() {
       </div>
 
       {/* Mobile menu */}
+      <AnimatePresence>
       {menuOpen && (
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col gap-4 px-6 pb-6 md:hidden"
           style={{ background: "rgba(8,15,26,0.98)" }}
         >
@@ -125,6 +132,7 @@ export function PortfolioNavbar() {
           </a>
         </motion.div>
       )}
+      </AnimatePresence>
     </motion.header>
   );
 }
